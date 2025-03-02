@@ -1,0 +1,17 @@
+﻿<Window x:Class="NotifyMe.Views.ReminderPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lembrete!" Height="150" Width="300"
+        WindowStartupLocation="CenterScreen" Topmost="True"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="lblMessage" Text="Bebe água!" 
+                       FontSize="14" FontWeight="Bold" 
+                       TextAlignment="Center" 
+                       Margin="10"/>
+            <Button Content="OK" Width="80" HorizontalAlignment="Center"
+                    Click="OkButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

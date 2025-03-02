@@ -1,0 +1,25 @@
+﻿<Window x:Class="NotifyMe.Views.WaterReminderForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configurar Lembrete de Água"
+        Height="250" Width="300"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Litros de água por dia:" FontWeight="Bold" Margin="0,5"/>
+            <Slider x:Name="sliderLitros" Minimum="0.5" Maximum="5" Value="2"
+                    TickFrequency="0.5" IsSnapToTickEnabled="True" Width="200"/>
+
+            <TextBlock Text="Horas para distribuir lembretes:" FontWeight="Bold" Margin="10,5,0,5"/>
+            <Slider x:Name="sliderHoras" Minimum="1" Maximum="24" Value="9"
+                    TickFrequency="1" IsSnapToTickEnabled="True" Width="200"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Salvar" Click="Salvar_Click" Width="80" Margin="5"/>
+                <Button Content="Cancelar" Click="Cancelar_Click" Width="80" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

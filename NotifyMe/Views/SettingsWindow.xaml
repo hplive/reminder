@@ -1,0 +1,14 @@
+﻿<Window x:Class="NotifyMe.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configurações" Height="300" Width="400">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Configurações Gerais" FontSize="18" FontWeight="Bold"/>
+            <CheckBox x:Name="chkAutoStart" Content="Executar ao iniciar o Windows"/>
+            <CheckBox x:Name="chkDailyReminders" Content="Repetir lembretes diariamente"/>
+            <Button Content="Salvar" Click="SaveSettings_Click"/>
+            <Button Content="Fechar" Click="Close_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
