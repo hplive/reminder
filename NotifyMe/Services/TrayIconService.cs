@@ -35,23 +35,18 @@ namespace NotifyMe.Services
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
-                if (mainWindow == null)
+                if (Application.Current.MainWindow is MainWindow mainWindow)
                 {
-                    mainWindow = new MainWindow();
-                    Application.Current.MainWindow = mainWindow;
-                }
-                else
-                {
-                    if (mainWindow.WindowState == WindowState.Minimized)
-                    {
-                        mainWindow.WindowState = WindowState.Normal;
-                    }
-
+                    // Se já existe, só mostra e ativa
+                    mainWindow.Show();
+                    mainWindow.WindowState = WindowState.Normal;
                     mainWindow.Activate();
                     return;
                 }
+
+                // Criar uma nova instância se necessário
+                mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
 
                 Rectangle trayArea = GetTrayIconRect();
 
@@ -71,6 +66,7 @@ namespace NotifyMe.Services
                 mainWindow.Activate();
             });
         }
+
 
 
 
@@ -97,5 +93,14 @@ namespace NotifyMe.Services
 
             Application.Current.Shutdown();
         }
+
+        public static void UpdateTrayTooltip(string message)
+        {
+            if (notifyIcon != null)
+            {
+                notifyIcon.Text = $"NotifyMe - {message}";
+            }
+        }
+
     }
 }

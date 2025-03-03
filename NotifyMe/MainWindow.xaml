@@ -1,13 +1,71 @@
 ﻿<Window x:Class="NotifyMe.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NotifyMe" Height="400" Width="500">
-    <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Notification Center" FontSize="18" FontWeight="Bold"/>
-            <Button Content="Adicionar Lembrete" Click="AddReminder_Click"/>
-            <Button Content="Remover Selecionado" Click="RemoveReminder_Click"/>
-            <Button Content="Configurações" Click="OpenSettings_Click"/>
-        </StackPanel>
+        Title="NotifyMe" Height="400" Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Margin="10">
+        <TabControl>
+
+            <!-- Aba dos Lembretes -->
+            <TabItem Header="Reminders">
+                <Grid>
+                    <TextBlock Text="NotifyMe - Smart Reminders" 
+                               FontSize="20" FontWeight="Bold" 
+                               HorizontalAlignment="Center" Margin="10"/>
+
+                    <UniformGrid Rows="1" Columns="3" HorizontalAlignment="Center" Margin="10">
+                        <Button Click="OpenWaterReminder" Width="120" Height="120">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <Image Source="/Assets/water.png" Width="50"/>
+                                <TextBlock Text="Water" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Click="OpenMyopiaReminder" Width="120" Height="120">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <Image Source="/Assets/glasses.png" Width="50"/>
+                                <TextBlock Text="Myopia" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Click="OpenStretchReminder" Width="120" Height="120">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <Image Source="/Assets/stretching.png" Width="50"/>
+                                <TextBlock Text="Stretch" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </UniformGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <Grid Margin="10">
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- Título Configurações -->
+                        <TextBlock Text="Settings" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Opções de Configuração -->
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <CheckBox x:Name="chkAutoStart" Content="Start on Windows boot" Margin="0,0,10,0"/>
+                            <CheckBox x:Name="chkDailyReminders" Content="Enable daily reminders"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Aba do Histórico -->
+            <TabItem Header="History">
+                <Grid Margin="10">
+                    <TextBlock Text="Recent Reminders" FontSize="16" FontWeight="Bold"/>
+                    <ListBox x:Name="lstRecentReminders" Height="100"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>

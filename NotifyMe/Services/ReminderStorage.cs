@@ -4,26 +4,36 @@ using System.IO;
 using Newtonsoft.Json;
 using NotifyMe.Models;
 
-namespace NotifyMe.Services
+public static class ReminderStorage
 {
-    public static class ReminderStorage
+    private static readonly string filePath = "reminders.json";
+
+    // Método para guardar um lembrete no histórico
+    public static void SaveReminder(Reminder reminder)
     {
-        private static readonly string filePath = "reminders.json";
+        List<Reminder> reminders = LoadReminders();
+        reminders.Add(reminder);
 
-        public static void SaveReminders(List<Reminder> reminders)
+        string json = JsonConvert.SerializeObject(reminders, Formatting.Indented);
+        File.WriteAllText(filePath, json);
+    }
+
+    // Método para carregar lembretes armazenados
+    public static List<Reminder> LoadReminders()
+    {
+        if (File.Exists(filePath))
         {
-            string json = JsonConvert.SerializeObject(reminders, Formatting.Indented);
-            File.WriteAllText(filePath, json);
+            string json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<Reminder>>(json) ?? new List<Reminder>();
         }
 
-        public static List<Reminder> LoadReminders()
-        {
-            if (File.Exists(filePath))
-            {
-                string json = File.ReadAllText(filePath);
-                return JsonConvert.DeserializeObject<List<Reminder>>(json);
-            }
-            return new List<Reminder>();
-        }
+        return new List<Reminder>();
+    }
+
+    // Método para obter os últimos lembretes
+    public static List<Reminder> GetLastReminders(int count)
+    {
+        List<Reminder> reminders = LoadReminders();
+        return reminders.Count > count ? reminders.GetRange(reminders.Count - count, count) : reminders;
     }
 }
